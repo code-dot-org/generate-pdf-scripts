@@ -2,7 +2,7 @@
   "name": "generate-pdf-scripts",
   "version": "1.0.0",
   "description": "scripts to generate pdfs of html pages",
-  "main": "src/generate-pdf.js",
+  "main": "index.js",
   "scripts": {
     "test": "mocha ./*-test.js"
   },

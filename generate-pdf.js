@@ -94,4 +94,4 @@ async function getUrlPdfCli() {
   }
 }
 
-module.exports = {GOTO_PDF_OPTIONS, DEFAULT_PRINT_OPTIONS, getUrlPdf, getUrlPdfCli, validatePdfCliArgs}
+module.exports = {GOTO_PDF_OPTIONS, DEFAULT_PRINT_OPTIONS, getUrlPdf, getUrlPdfCli, validatePdfCliArgs};
