@@ -5,7 +5,6 @@ const {
   GOTO_PDF_OPTIONS,
   getUrlPdf,
   getUrlPdfCli,
-  testVerifier,
   validatePdfCliArgs
 } = require('./generate-pdf.js')
 
@@ -52,7 +51,7 @@ describe('getUrlPdf', function() {
 describe('validatePdfCliArgs', function() {
   it('contains reports of all validation errors on failure', function() {
     try {
-      validatePdfCliArgs({ optionOverrides: 'invalidJson' });
+      validatePdfCliArgs({ optionOverrides: `${__dirname}/test_fixtures/invalid_json.json`}) 
     } catch(error) {
       assert(error.message.includes(VALIDATION_ERRORS.mustHaveWritepathOrRaw));
       assert(error.message.includes(VALIDATION_ERRORS.errorParsingJson));
@@ -62,7 +61,7 @@ describe('validatePdfCliArgs', function() {
 
   it('doesnt throw an error if input is valid', function() {
     validatePdfCliArgs({
-      optionOverrides: '{ "valid": "json" }',
+      optionOverrides: `${__dirname}/test_fixtures/valid_json.json`,
       url: TEST_URL,
       writePath: './out.pdf',
       raw: true,

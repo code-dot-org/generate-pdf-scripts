@@ -1,5 +1,6 @@
 const puppeteer = require("puppeteer");
 const yargs = require("yargs");
+const fs = require('fs')
 
 DEFAULT_PRINT_OPTIONS = {
   format: "Letter",
@@ -34,6 +35,16 @@ async function getUrlPdf(browser, url, writePath, optionOverrides) {
   return await page.pdf(pdfOptions)
 }
 
+function parseJsonFile(pathToFile) {
+  try {
+    const data = fs.readFileSync(pathToFile);
+    
+    return JSON.parse(data);
+  } catch (err) {
+    throw err;
+  }
+}
+
 function validatePdfCliArgs(argv) {
   let validationErrors = []; 
 
@@ -42,7 +53,7 @@ function validatePdfCliArgs(argv) {
   }
 
   try {
-    argv.optionOverrides && JSON.parse(argv.optionOverrides);
+    argv.optionOverrides && parseJsonFile(argv.optionOverrides);
   } catch(exception) {
     validationErrors.push(VALIDATION_ERRORS.errorParsingJson + exception.message);
   }
@@ -73,16 +84,21 @@ async function getUrlPdfCli() {
       type: "boolean",
       describe: "if present, contents of the PDF will be written to standard out"
     })
-    .option("optionOverrides", {
+    .option("optionOverridesFile", {
       alias: "o",
-      describe: "json representing overrides to default pdf print parameters"
+      describe: "path to json file contianing overrides to default pdf print parameters"
     })
     .check(validatePdfCliArgs)
     .help().argv;
 
   try {
     const browser = await puppeteer.launch();
-    var pdfContents = await getUrlPdf(browser, argv.url, argv.writePath, argv.optionOverrides)
+    var pdfContents = await getUrlPdf(
+      browser,
+      argv.url,
+      argv.writePath,
+      argv.optionOverrides && readJsonFile(argv.optionOverrides)
+    )
     if (argv.raw) {
       process.stdout.write(pdfContents);
     }
