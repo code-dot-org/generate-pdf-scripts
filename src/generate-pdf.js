@@ -86,7 +86,7 @@ async function getUrlPdfCli() {
     })
     .option("optionOverridesFile", {
       alias: "o",
-      describe: "path to json file contianing overrides to default pdf print parameters"
+      describe: "path to json file containing overrides to default pdf print parameters"
     })
     .check(validatePdfCliArgs)
     .help().argv;
@@ -97,7 +97,7 @@ async function getUrlPdfCli() {
       browser,
       argv.url,
       argv.writePath,
-      argv.optionOverrides && readJsonFile(argv.optionOverrides)
+      argv.optionOverrides && parseJsonFile(argv.optionOverrides)
     )
     if (argv.raw) {
       process.stdout.write(pdfContents);

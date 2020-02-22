@@ -4,7 +4,9 @@
   "description": "scripts to generate pdfs of html pages",
   "main": "index.js",
   "scripts": {
-    "test": "mocha ./*-test.js"
+    "test": "mocha ./tst/unit/*-test.js",
+    "integ-test": "./tst/integ/integ_test.sh",
+    "all-test": "npm run integ-test; npm test"
   },
   "author": "codedotorg",
   "license": "SEE LICENSE IN LICENSE",

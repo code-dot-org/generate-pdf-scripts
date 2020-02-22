@@ -1,6 +1,6 @@
 const {
   getUrlPdf,
   getUrlPdfCli
-} = require('./generate-pdf.js')
+} = require('./src/generate-pdf.js')
 
 module.exports = { getUrlPdf, getUrlPdfCli };

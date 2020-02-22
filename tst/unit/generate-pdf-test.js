@@ -6,7 +6,7 @@ const {
   getUrlPdf,
   getUrlPdfCli,
   validatePdfCliArgs
-} = require('./generate-pdf.js')
+} = require('../../src/generate-pdf.js')
 
 const TEST_URL = 'https://www.wikipedia.org/';
 const TEST_PATH = './out.pdf';
