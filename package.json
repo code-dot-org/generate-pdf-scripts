@@ -1,16 +1,20 @@
 {
   "name": "generate-pdf-scripts",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "scripts to generate pdfs of html pages",
-  "main": "generatePdf.js",
+  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha ./tst/unit/*-test.js",
+    "integ-test": "./tst/integ/integ_test.sh",
+    "all-test": "npm run integ-test; npm test"
   },
   "author": "codedotorg",
   "license": "SEE LICENSE IN LICENSE",
   "dependencies": {
+    "mocha": "^7.0.1",
     "puppeteer": "1.20.0",
-    "yargs": "^14.2.0"
+    "sinon": "^8.1.1",
+    "yargs": "^14.2.2"
   },
   "devDependencies": {},
   "repository": {
