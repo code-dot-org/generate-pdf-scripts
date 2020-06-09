@@ -92,7 +92,7 @@ async function getUrlPdfCli() {
     .help().argv;
 
   try {
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({ args: ['--no-sandbox'] });
     var pdfContents = await getUrlPdf(
       browser,
       argv.url,
